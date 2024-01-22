@@ -32,12 +32,12 @@ public class SystemsTests
     [Test]
     public async Task GetBackgroundSlugsRecords()
     {
-        var systems = SystemsDatabase.Instance.Systems; ;
+        var systems = SystemsDatabase.Instance.Systems;
         Assert.That(systems.All(x => string.IsNullOrEmpty(x.Slug) == false));
     }
 
-    [TestCaseSource(nameof(GetSystemNames))]
-    public async Task GetBackgroundFolderssRecords(string name)
+    [TestCaseSource(nameof(SystemNames))]
+    public async Task GetBackgroundFoldersRecords(string name)
     {
         var systems = SystemsDatabase.Instance.Systems;
         var systemFromFolder = systems.FirstOrDefault(x => x.Folder == name);
@@ -55,9 +55,7 @@ public class SystemsTests
         await SystemsDatabase.Instance.Initialize();
     }
 
-     
-
-    public static string[] GetSystemNames()
+    public static string[] SystemNames()
     {
         return new[]
         {
