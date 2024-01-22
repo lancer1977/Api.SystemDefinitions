@@ -2,7 +2,7 @@
 name: 1.0.2.$(rev:r)
 variables: 
 - name: Project.Path
-  value: '**/PolyhydraGames.Api.CDN.csproj'
+  value: '**/PolyhydraGames.Api.SystemDefinitions.csproj'
 - name: BuildConfiguration
   value: Release
 trigger:
@@ -11,7 +11,7 @@ trigger:
     - refs/heads/master
   paths:
     include:
-    - API.CDN
+    - Api.SystemDefinitions
 
 jobs:
 - job: Phase_1 
