@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Api.SystemDefinitions/.vs
+/Api.SystemDefinitions/bin/Debug/net8.0
+/Api.SystemDefinitions/obj
+/API.SystemDefinitions.Test/bin/Debug/net8.0
+/API.SystemDefinitions.Test/obj/Debug/net8.0
