@@ -2,6 +2,7 @@
 
 public class SystemDefinition
 {
+    public string Name { get; set; }
     //IGDB ID.
     public string IgdbId { get; set; }
     //Folder where roms and such would be stored. Should correspond to all files suich as art as well
