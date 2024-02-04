@@ -10,7 +10,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
     <PackageReference Include="PolyhydraGames.Core.Interfaces.Gaming" Version="1.0.0.3" />
-    <PackageReference Include="PolyhydraGames.Core.Models" Version="1.0.0.15" />
+    <PackageReference Include="PolyhydraGames.Core.Models" Version="1.0.0.16" />
     <PackageReference Include="PolyhydraGames.Extensions" Version="2.1.1.47" />
   </ItemGroup>
 
