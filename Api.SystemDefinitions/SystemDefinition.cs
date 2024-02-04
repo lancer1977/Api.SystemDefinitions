@@ -2,6 +2,7 @@
 
 public class SystemDefinition
 {
+    public string Name { get; set; }
     //IGDB ID.
     public string IgdbId { get; set; }
     //Folder where roms and such would be stored. Should correspond to all files suich as art as well
@@ -14,7 +15,7 @@ public class SystemDefinition
 
     public override string ToString()
     {
-        return $"{nameof(IgdbId)}: {IgdbId}, {nameof(Folder)}: {Folder}, {nameof(Slug)}: {Slug}";
+        return $"{nameof(Name)}:{Name}, {nameof(IgdbId)}: {IgdbId}, {nameof(Folder)}: {Folder}, {nameof(Slug)}: {Slug}";
         // {nameof(Platform)}: {Platform}, {nameof(System)}: {System}
     }
 
