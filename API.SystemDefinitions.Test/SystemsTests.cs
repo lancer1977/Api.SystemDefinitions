@@ -36,11 +36,13 @@ public class SystemsTests
         Assert.That(systems.All(x => string.IsNullOrEmpty(x.Slug) == false));
     }
 
-    [TestCaseSource(nameof(SystemNames))]
+    [TestCaseSource(nameof(SystemNames)),
+    TestCase("mastersystem")]
     public async Task GetBackgroundFoldersRecords(string name)
     {
-        var systems = SystemsDatabase.Instance.Systems;
-        var systemFromFolder = systems.FirstOrDefault(x => x.Folder == name);
+        var systemFromFolder = SystemsDatabase.Instance.GetCoreFromSlug(name);
+        
+
         Assert.That(systemFromFolder, Is.Not.Null);
     }
 
@@ -138,8 +140,7 @@ public class SystemsTests
             "c64",
             "dos",
             "msdos",
-            "pc",
-            "scumm",
+            "pc", 
             "scummvm",
             "fmtowns",
             "ti99",

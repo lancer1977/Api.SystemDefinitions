@@ -30,6 +30,7 @@ public static class SystemHelpers
 
     public static SystemDefinition GetSystem(string slug)
     {
+        slug = slug.SanitizeSlug();
         var result = SystemsDatabase.Instance.Systems.FirstOrDefault(x => x.Slug == slug);
         if (result == null) throw new Exception($"System {slug} not found");
         return result;
@@ -37,8 +38,20 @@ public static class SystemHelpers
 
     public static SystemDefinition GetSystemFromCore(string core)
     {
+        core = core.SanitizeSlug();
         var result = SystemsDatabase.Instance.Systems.FirstOrDefault(x => x.Core == core);
         if (result == null) throw new Exception($"System {core} not found");
         return result;
+    }
+
+    public static string SanitizeSlug(this string value)
+    {
+        switch (value)
+        {
+            case "mastersystem": return "sms";
+            case "pce": return "pcenengine";
+            default: return value;
+        }
+
     }
 }

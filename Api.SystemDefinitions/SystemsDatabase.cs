@@ -48,4 +48,57 @@ public class SystemsDatabase
     }
 
     public static SystemsDatabase Instance { get; } = new();
+
+    public   string GetFolderFromCore(string core)
+    {
+        return Systems.FirstOrDefault(x => x.Core == core)?.Folder ?? "";
+    }
+    public   string GetSystemFromExtension(string ext)
+    {
+        ext = ext.Replace(".", "");
+        var system = Systems.FirstOrDefault(x => x.Extensions.Contains(ext));
+        var result = system?.Slug;
+        return string.IsNullOrEmpty(result) ? "unknown" : result;
+    }
+
+    public string GetIgdbIdFromSlug(string slug) => GetSystem(slug).IgdbId;
+
+    public string GetCoreFromSlug(string slug) => GetSystem(slug).Core;
+
+
+
+    public string ToFolder(string slug) => GetSystem(slug).Folder;
+
+
+    public List<string> GameSlugs()
+    {
+        return Systems.Select(x => x.Slug).ToList();
+    }
+
+    public SystemDefinition GetSystem(string slug)
+    {
+        slug = SanitizeSlug(slug);
+        var result = Systems.FirstOrDefault(x => x.Slug == slug);
+        if (result == null) throw new Exception($"System {slug} not found");
+        return result;
+    }
+
+    public SystemDefinition GetSystemFromCore(string core)
+    {
+        core = SanitizeSlug(core);
+        var result = Systems.FirstOrDefault(x => x.Core == core);
+        if (result == null) throw new Exception($"System {core} not found");
+        return result;
+    }
+
+    public string SanitizeSlug(string value)
+    {
+        switch (value)
+        {
+            case "mastersystem": return "sms";
+            case "pce": return "pcenengine";
+            default: return value;
+        }
+
+    }
 }
