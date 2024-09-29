@@ -27,6 +27,10 @@
 		</PackageReference>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\Api.SystemDefinitions\PolyhydraGames.Api.SystemDefinitions.csproj" />
+	</ItemGroup>
+
  
 
 </Project>

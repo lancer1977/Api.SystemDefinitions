@@ -22,7 +22,7 @@ public class SystemsTests
     public async Task VerifySystems()
     {
         var systems = SystemsDatabase.Instance.Systems.ToList();
-        systems.ForEach(x => Trace.WriteLine((string)x.ToString()));
+        systems.ForEach(x => Console.WriteLine((string)x.ToString()));
 
         var systemsCount = systems.Count();
         if (systemsCount < 10) Assert.Fail("systemsCount is unusually low 0");
