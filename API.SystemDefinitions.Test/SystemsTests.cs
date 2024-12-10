@@ -11,7 +11,7 @@ public class SystemsTests
 {
     public SystemsTests()
     {
-        App = PolyhydraGames.Core.Test.TestFixtures.GetHost((x, services) =>
+        App = PolyhydraGames.Core.Test.TestHelpers.GetHost((x, services) =>
         {
 
             services.AddSingleton<HttpClient>();
