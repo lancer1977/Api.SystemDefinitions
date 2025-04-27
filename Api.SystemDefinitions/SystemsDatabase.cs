@@ -49,11 +49,11 @@ public class SystemsDatabase
 
     public static SystemsDatabase Instance { get; } = new();
 
-    public   string GetFolderFromCore(string core)
+    public string GetFolderFromCore(string core)
     {
         return Systems.FirstOrDefault(x => x.Core == core)?.Folder ?? "";
     }
-    public   string GetSystemFromExtension(string ext)
+    public string GetSystemFromExtension(string ext)
     {
         ext = ext.Replace(".", "");
         var system = Systems.FirstOrDefault(x => x.Extensions.Contains(ext));

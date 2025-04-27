@@ -40,7 +40,7 @@ public class SystemsTests
     public async Task GetBackgroundFoldersRecords(string name)
     {
         var systemFromFolder = SystemsDatabase.Instance.GetCoreFromSlug(name);
-        
+
 
         Assert.That(systemFromFolder, Is.Not.Null);
     }
@@ -139,7 +139,7 @@ public class SystemsTests
             "c64",
             "dos",
             "msdos",
-            "pc", 
+            "pc",
             "scummvm",
             "fmtowns",
             "ti99",

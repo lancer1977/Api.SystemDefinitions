@@ -1,7 +1,7 @@
 ﻿namespace PolyhydraGames.Api.SystemDefinitions;
 
 public static class SystemHelpers
-{ 
+{
     public static string GetFolderFromCore(string core)
     {
         return SystemsDatabase.Instance.Systems.FirstOrDefault(x => x.Core == core)?.Folder ?? "";
