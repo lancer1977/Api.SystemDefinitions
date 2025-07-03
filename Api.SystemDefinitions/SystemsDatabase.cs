@@ -6,7 +6,7 @@ namespace PolyhydraGames.Api.SystemDefinitions;
 
 public class SystemsDatabase
 {
-    ILogger<SystemsDatabase> _logger;
+    ILogger<SystemsDatabase> Logger;
     private bool _initialized;
     private SystemsDatabase()
     {
@@ -16,7 +16,7 @@ public class SystemsDatabase
     {
         if (appServices != null)
         {
-            _logger = appServices.GetRequiredService<ILogger<SystemsDatabase>>();
+            Logger = appServices.GetRequiredService<ILogger<SystemsDatabase>>();
         }
 
         try
@@ -31,7 +31,7 @@ public class SystemsDatabase
         }
         catch (Exception e)
         {
-            _logger.LogError(e, "Failed to initialize systems database");
+            Logger.LogError(e, "Failed to initialize systems database");
         }
 
         _initialized = _systems.Any();
