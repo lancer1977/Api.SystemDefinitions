@@ -65,16 +65,10 @@ public class SystemsDatabase
 
     public string GetCoreFromSlug(string slug) => GetSystem(slug).Core;
 
-
-
     public string ToFolder(string slug) => GetSystem(slug).Folder;
 
-
-    public List<string> GameSlugs()
-    {
-        return Systems.Select(x => x.Slug).ToList();
-    }
-
+    public List<string> GameSlugs()=> Systems.Select(x => x.Slug).ToList();
+    
     public SystemDefinition GetSystem(string slug)
     {
         slug = SanitizeSlug(slug);
