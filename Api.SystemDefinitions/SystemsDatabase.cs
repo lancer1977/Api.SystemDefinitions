@@ -43,7 +43,7 @@ public class SystemsDatabase
         }
     }
 
-    public async Task Setup(ILogger logger)
+    public static async Task Setup(ILogger logger)
     {
         Instance = new SystemsDatabase(logger);
         await Instance.Initialize();
