@@ -6,19 +6,15 @@ namespace PolyhydraGames.Api.SystemDefinitions;
 
 public class SystemsDatabase
 {
-    ILogger<SystemsDatabase> Logger;
+    private ILogger Logger { get; }
     private bool _initialized;
-    private SystemsDatabase()
+    private SystemsDatabase(ILogger logger)
     {
+        Logger = logger;
     }
 
-    public async Task Initialize(IServiceProvider appServices = null)
-    {
-        if (appServices != null)
-        {
-            Logger = appServices.GetRequiredService<ILogger<SystemsDatabase>>();
-        }
-
+    public async Task Initialize( )
+    { 
         try
         {
             if (_systems.Any()) return;
@@ -47,7 +43,12 @@ public class SystemsDatabase
         }
     }
 
-    public static SystemsDatabase Instance { get; } = new();
+    public async Task Setup(ILogger logger)
+    {
+        Instance = new SystemsDatabase(logger);
+        await Instance.Initialize();
+    }
+    public static SystemsDatabase Instance { get; private set; }
 
     public string GetFolderFromCore(string core)
     {
