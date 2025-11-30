@@ -31,7 +31,7 @@ public static class SystemHelpers
     public static SystemDefinition GetSystem(string slug)
     {
         slug = slug.SanitizeSlug();
-        var result = SystemsDatabase.Instance.Systems.FirstOrDefault(x => x.Slug == slug);
+        var result = SystemsDatabase.Instance.Systems.FirstOrDefault(x => x.Slug == slug.ToLower());
         if (result == null) throw new Exception($"System {slug} not found");
         return result;
     }
