@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 using PolyhydraGames.Api.SystemDefinitions;
 
@@ -8,6 +9,7 @@ namespace API.SystemDefinitions.Test;
 [TestFixture]
 public class SystemsTests
 {
+    
     public SystemsTests()
     {
         App = PolyhydraGames.Core.Test.TestHelpers.GetHost((x, services) =>
@@ -15,6 +17,7 @@ public class SystemsTests
 
             services.AddSingleton<HttpClient>();
         });
+        
     }
 
     [Test]
@@ -53,7 +56,8 @@ public class SystemsTests
     [SetUp]
     public async Task Setup()
     {
-        await SystemsDatabase.Instance.Initialize();
+        var logger = App.Services.GetRequiredService<ILogger<SystemsTests>>();
+        await SystemsDatabase.Setup(logger);
     }
 
     public static string[] SystemNames()

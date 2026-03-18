@@ -10,10 +10,26 @@ public class SystemsDatabase
     private bool _initialized;
     private SystemsDatabase(ILogger logger)
     {
-        Logger = logger;
+        Logger = logger;        
     }
 
-    public async Task Initialize( )
+    public static SystemsDatabase? Instance
+    {
+        get
+        {
+            return field ?? throw new Exception("SystemsDatabase not initialized! Must call SETUP(ILOGGER) first.");
+        }
+        private set;
+    }
+
+    public static async Task Setup(ILogger logger)
+    {
+
+        Instance = new SystemsDatabase(logger);
+        await Instance.Initialize();
+    }
+    
+    private async Task Initialize( )
     { 
         try
         {
@@ -43,12 +59,8 @@ public class SystemsDatabase
         }
     }
 
-    public static async Task Setup(ILogger logger)
-    {
-        Instance = new SystemsDatabase(logger);
-        await Instance.Initialize();
-    }
-    public static SystemsDatabase Instance { get; private set; }
+
+    
 
     public string GetFolderFromCore(string core)
     {
