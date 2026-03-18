@@ -80,19 +80,10 @@ public class SystemsDatabase
         return systems ?? throw new InvalidOperationException("System definitions could not be deserialized.");
     }
 
-    public IReadOnlyList<SystemDefinition> Systems
-    {
-        get
-        {
-            if (!_initialized) throw new InvalidOperationException("Systems not initialized.");
-            return _systems;
-        }
-    }
+    public IReadOnlyList<SystemDefinition> Systems => !_initialized ? throw new InvalidOperationException("Systems not initialized.") : _systems;
+    
 
-    public string GetFolderFromCore(string core)
-    {
-        return FindByCore(core)?.Folder ?? string.Empty;
-    }
+    public string GetFolderFromCore(string core) => FindByCore(core)?.Folder ?? string.Empty;
 
     public string GetSystemFromExtension(string ext)
     {
@@ -124,11 +115,6 @@ public class SystemsDatabase
         return result;
     }
 
-    public string SanitizeSlug(string value)
-    {
-        return NormalizeSlug(value);
-    }
-
     public static string NormalizeSlug(string value)
     {
         var normalized = NormalizeValue(value).ToLowerInvariant();
@@ -148,23 +134,13 @@ public class SystemsDatabase
 
     private SystemDefinition? FindByCore(string core)
     {
-        if (string.IsNullOrWhiteSpace(core))
-        {
-            return null;
-        }
-
-        return Systems.FirstOrDefault(x => string.Equals(x.Core, core, StringComparison.OrdinalIgnoreCase));
+        return string.IsNullOrWhiteSpace(core) ? null : Systems.FirstOrDefault(x => string.Equals(x.Core, core, StringComparison.OrdinalIgnoreCase));
     }
 
     private SystemDefinition? FindByExtension(string ext)
     {
         var normalizedExtension = NormalizeExtension(ext);
-        if (string.IsNullOrEmpty(normalizedExtension))
-        {
-            return null;
-        }
-
-        return Systems.FirstOrDefault(x => string.Equals(x.Extensions, normalizedExtension, StringComparison.OrdinalIgnoreCase));
+        return string.IsNullOrEmpty(normalizedExtension) ? null : Systems.FirstOrDefault(x => string.Equals(x.Extensions, normalizedExtension, StringComparison.OrdinalIgnoreCase));
     }
 
     private static string NormalizeExtension(string ext)

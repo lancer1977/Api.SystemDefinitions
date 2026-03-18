@@ -18,7 +18,7 @@ public class SystemsTests
     public void VerifySystems()
     {
         var systems = SystemsDatabase.Instance.Systems.ToList();
-        Assert.That(systems, Has.Count.EqualTo(4));
+        Assert.That(systems, Has.Count.EqualTo(5));
         Assert.That(systems.All(x => !string.IsNullOrWhiteSpace(x.Slug)));
     }
 
@@ -26,6 +26,12 @@ public class SystemsTests
     [TestCase("SMS", "sms")]
     [TestCase("mastersystem", "sms")]
     [TestCase("pce", "pcengine")]
+    [TestCase("arcade_chd", "arcade")]
+    [TestCase("daphne", "arcade")]
+    [TestCase("fba", "arcade")]
+    [TestCase("model123", "arcade")]
+    [TestCase("naomi", "arcade")]
+    [TestCase("zinc", "arcade")]
     public void GetSystem_NormalizesSlugAliases(string name, string expectedSlug)
     {
         var system = SystemsDatabase.Instance.GetSystem(name);
@@ -42,7 +48,7 @@ public class SystemsTests
     [Test]
     public void GetSystemFromExtension_ReturnsUnknownForMissingExtension()
     {
-        var systemSlug = SystemsDatabase.Instance.GetSystemFromExtension(".zip");
+        var systemSlug = SystemsDatabase.Instance.GetSystemFromExtension(".7z");
         Assert.That(systemSlug, Is.EqualTo(SystemsDatabase.UnknownSystemSlug));
     }
 

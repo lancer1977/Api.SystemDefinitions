@@ -1,5 +1,13 @@
 [
   {
+    "IgdbId": "6",
+    "Name": "Arcade",
+    "Folder": "arcade",
+    "Slug": "arcade",
+    "Extensions": "zip",
+    "Core": "MAME"
+  },
+  {
     "IgdbId": "64",
     "Name": "Sega Master System/Mark III",
     "Folder": "sms",
