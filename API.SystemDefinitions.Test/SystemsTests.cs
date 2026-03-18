@@ -3,11 +3,12 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 using PolyhydraGames.Api.SystemDefinitions;
+using PolyhydraGames.IGDB.Test;
 
 namespace API.SystemDefinitions.Test;
 
 [TestFixture]
-public class SystemsTests
+public class SystemsTests :TestBase
 {
     public SystemsTests()
     {
