@@ -31,6 +31,12 @@
 	  <ProjectReference Include="..\Api.SystemDefinitions\PolyhydraGames.Api.SystemDefinitions.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<None Update="TestData/platform.fixture.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
  
 
 </Project>

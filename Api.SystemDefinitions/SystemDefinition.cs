@@ -1,17 +1,17 @@
-﻿namespace PolyhydraGames.Api.SystemDefinitions;
+namespace PolyhydraGames.Api.SystemDefinitions;
 
-public class SystemDefinition
+public sealed record SystemDefinition
 {
-    public string Name { get; set; }
-    //IGDB ID.
-    public string IgdbId { get; set; }
-    //Folder where roms and such would be stored. Should correspond to all files suich as art as well
-    public string Folder { get; set; }
+    public string Name { get; init; } = string.Empty;
+    // IGDB ID.
+    public string IgdbId { get; init; } = string.Empty;
+    // Folder where roms and related assets are stored.
+    public string Folder { get; init; } = string.Empty;
 
-    public string Slug { get; set; }
-    //Traditionally the core that is used to emulate this system. Example: "Sega - Dreamcast/Naomi"
-    public string Core { get; set; }
-    public string Extensions { get; set; }
+    public string Slug { get; init; } = string.Empty;
+    // Traditionally the core used to emulate this system. Example: "Sega - Dreamcast/Naomi"
+    public string Core { get; init; } = string.Empty;
+    public string Extensions { get; init; } = string.Empty;
 
     public override string ToString()
     {

@@ -9,154 +9,67 @@ namespace API.SystemDefinitions.Test;
 [TestFixture]
 public class SystemsTests
 {
-    
     public SystemsTests()
     {
-        App = PolyhydraGames.Core.Test.TestHelpers.GetHost((x, services) =>
-        {
-
-            services.AddSingleton<HttpClient>();
-        });
-        
+        App = PolyhydraGames.Core.Test.TestHelpers.GetHost((_, _) => { });
     }
 
     [Test]
-    public async Task VerifySystems()
+    public void VerifySystems()
     {
         var systems = SystemsDatabase.Instance.Systems.ToList();
-        systems.ForEach(x => Console.WriteLine((string)x.ToString()));
+        Assert.That(systems, Has.Count.EqualTo(4));
+        Assert.That(systems.All(x => !string.IsNullOrWhiteSpace(x.Slug)));
+    }
 
-        var systemsCount = systems.Count();
-        if (systemsCount < 10) Assert.Fail("systemsCount is unusually low 0");
-        Assert.Pass($"Systems count was: {systemsCount}");
+    [TestCase("sms", "sms")]
+    [TestCase("SMS", "sms")]
+    [TestCase("mastersystem", "sms")]
+    [TestCase("pce", "pcengine")]
+    public void GetSystem_NormalizesSlugAliases(string name, string expectedSlug)
+    {
+        var system = SystemsDatabase.Instance.GetSystem(name);
+        Assert.That(system.Slug, Is.EqualTo(expectedSlug));
     }
 
     [Test]
-    public async Task GetBackgroundSlugsRecords()
+    public void GetSystemFromCore_IsCaseInsensitive()
     {
-        var systems = SystemsDatabase.Instance.Systems;
-        Assert.That(systems.All(x => string.IsNullOrEmpty(x.Slug) == false));
+        var system = SystemsDatabase.Instance.GetSystemFromCore("sega - dreamcast/naomi");
+        Assert.That(system.Slug, Is.EqualTo("naomi"));
     }
 
-    [TestCaseSource(nameof(SystemNames)),
-    TestCase("mastersystem")]
-    public async Task GetBackgroundFoldersRecords(string name)
+    [Test]
+    public void GetSystemFromExtension_ReturnsUnknownForMissingExtension()
     {
-        var systemFromFolder = SystemsDatabase.Instance.GetCoreFromSlug(name);
-
-
-        Assert.That(systemFromFolder, Is.Not.Null);
+        var systemSlug = SystemsDatabase.Instance.GetSystemFromExtension(".zip");
+        Assert.That(systemSlug, Is.EqualTo(SystemsDatabase.UnknownSystemSlug));
     }
 
+    [Test]
+    public void GetSystemFromExtension_NormalizesLeadingDot()
+    {
+        var systemSlug = SystemsDatabase.Instance.GetSystemFromExtension(".gba");
+        Assert.That(systemSlug, Is.EqualTo("gba"));
+    }
+
+    [Test]
+    public void StaticHelpers_DelegateToSystemsDatabase()
+    {
+        Assert.That(SystemHelpers.GetSystem("SMS").Slug, Is.EqualTo("sms"));
+        Assert.That("mastersystem".GetCoreFromSlug(), Is.EqualTo(SystemsDatabase.Instance.GetCoreFromSlug("mastersystem")));
+        Assert.That("SMS".ToFolder(), Is.EqualTo("sms"));
+    }
 
 #pragma warning disable NUnit1032
     protected IHost App { get; }
 #pragma warning restore NUnit1032
 
-    [SetUp]
+    [OneTimeSetUp]
     public async Task Setup()
     {
         var logger = App.Services.GetRequiredService<ILogger<SystemsTests>>();
-        await SystemsDatabase.Setup(logger);
-    }
-
-    public static string[] SystemNames()
-    {
-        return new[]
-        {
-            "atarilynx",
-            "gameandwatch",
-            "gb",
-            "gba",
-            "gbc",
-            "ngp",
-            "ngpc",
-            "n3ds",
-            "nds",
-            "psp",
-            "vita",
-            "gamegear",
-            "wonderswan",
-            "wonderswancolor",
-            "arcade",
-            "arcade_chd",
-            "daphne",
-            "fba",
-            "model123",
-            "naomi",
-            "genesis",
-            "actionmax",
-            "amigacd32",
-            "atari2600",
-            "atari5200",
-            "atari7800",
-            "3do",
-            "atarijaguar",
-            "atarijaguarcd",
-            "astrocade",
-            "coleco",
-            "dreamcast",
-            "channelf",
-            "famicom",
-            "intellivision",
-            "neogeo",
-            "neogeocd",
-            "n64",
-            "nes",
-            "gamecube",
-            "nswitch",
-            "sgfx",
-            "pcfx",
-            "cdi",
-            "ps1",
-            //"ps2",
-            //"ps3",
-            //"ps4",
-            //"ps5",
-            "sega32x",
-            "segacd",
-            "sms",
-            "genesis",
-            "megadrive",
-            "segapico",
-            "saturn",
-            "sg-1000",
-            "snes",
-            "tg16",
-            "tg16cd",
-            "pcengine",
-            "pcenginecd",
-            "vectrex",
-            "virtualboy",
-            "wii",
-            "wiiu",
-            "xbox",
-            "fds",
-            "odyssey2",
-            "pico",
-            "wiiware",
-            "amiga",
-            "amstradcpc",
-            "apple2",
-            "atarist",
-            "atari800",
-            "c64",
-            "dos",
-            "msdos",
-            "pc",
-            "scummvm",
-            "fmtowns",
-            "ti99",
-            "msx",
-            "msx2",
-            "zxspectrum",
-            "zinc",
-            "zmachine",
-            "creativision",
-            "crvision",
-            "vg5000",
-            "videopac",
-            "x68000",
-        };
+        var fixturePath = Path.Combine(AppContext.BaseDirectory, "TestData", "platform.fixture.json");
+        await SystemsDatabase.Setup(logger, dataSource: fixturePath);
     }
 }

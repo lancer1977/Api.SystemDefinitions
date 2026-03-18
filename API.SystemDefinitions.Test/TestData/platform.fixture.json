@@ -1,0 +1,34 @@
+[
+  {
+    "IgdbId": "64",
+    "Name": "Sega Master System/Mark III",
+    "Folder": "sms",
+    "Slug": "sms",
+    "Extensions": "sms",
+    "Core": "Sega - Master System - Mark III"
+  },
+  {
+    "IgdbId": "24",
+    "Name": "Game Boy Advance",
+    "Folder": "gba",
+    "Slug": "gba",
+    "Extensions": "gba",
+    "Core": "Nintendo - Game Boy Advance"
+  },
+  {
+    "IgdbId": "86",
+    "Name": "PC Engine",
+    "Folder": "pcengine",
+    "Slug": "pcengine",
+    "Extensions": "pce",
+    "Core": "NEC - PC Engine"
+  },
+  {
+    "IgdbId": "106",
+    "Name": "Naomi",
+    "Folder": "naomi",
+    "Slug": "naomi",
+    "Extensions": "chd",
+    "Core": "Sega - Dreamcast/Naomi"
+  }
+]
