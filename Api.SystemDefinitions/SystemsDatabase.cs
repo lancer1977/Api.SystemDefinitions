@@ -7,13 +7,13 @@ public class SystemsDatabase
 {
     private const string DefaultDataSource = "https://raw.githubusercontent.com/lancer1977/DataSeeds/master/retro/platform.json";
 
-    private readonly ILogger _logger;
+    private readonly ILogger? _logger;
     private readonly HttpClient _httpClient;
     private readonly string _dataSource;
     private readonly List<SystemDefinition> _systems = new();
     private bool _initialized;
 
-    private SystemsDatabase(ILogger logger, HttpClient httpClient, string dataSource)
+    private SystemsDatabase(ILogger? logger, HttpClient httpClient, string dataSource)
     {
         _logger = logger;
         _httpClient = httpClient;
@@ -31,7 +31,7 @@ public class SystemsDatabase
         private set;
     }
 
-    public static async Task Setup(ILogger logger, HttpClient? httpClient = null, string? dataSource = null)
+    public static async Task Setup(ILogger? logger = null, HttpClient? httpClient = null, string? dataSource = null)
     {
         var database = new SystemsDatabase(logger, httpClient ?? new HttpClient(), dataSource ?? DefaultDataSource);
         Instance = database;
@@ -51,7 +51,7 @@ public class SystemsDatabase
         }
         catch (Exception e)
         {
-            _logger.LogError(e, "Failed to initialize systems database");
+            _logger?.LogError(e, "Failed to initialize systems database");
             _initialized = false;
         }
     }
@@ -103,15 +103,25 @@ public class SystemsDatabase
     {
         var normalizedSlug = NormalizeSlug(slug);
         var result = FindBySlug(normalizedSlug);
-        if (result == null) throw new KeyNotFoundException($"System {normalizedSlug} not found.");
+        if (result == null)
+        {
+            var ex = new KeyNotFoundException($"System {normalizedSlug} not found.");
+            _logger?.LogCritical(ex, "GetSystem failed");
+            throw ex;
+        }
         return result;
     }
 
     public SystemDefinition GetSystemFromCore(string core)
     {
         var normalizedCore = NormalizeValue(core);
-        var result = FindByCore(normalizedCore);
-        if (result == null) throw new KeyNotFoundException($"System with core {normalizedCore} not found.");
+        var result = FindByCore(normalizedCore); 
+        if (result == null)
+        {
+            var ex = new KeyNotFoundException($"System with core {normalizedCore} not found.");
+            _logger?.LogCritical(ex, "GetSystem failed");
+            throw ex;
+        }
         return result;
     }
 
