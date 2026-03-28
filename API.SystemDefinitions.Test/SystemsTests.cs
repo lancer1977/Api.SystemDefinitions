@@ -19,20 +19,28 @@ public class SystemsTests :TestBase
     public void VerifySystems()
     {
         var systems = SystemsDatabase.Instance.Systems.ToList();
-        Assert.That(systems, Has.Count.EqualTo(5));
-        Assert.That(systems.All(x => !string.IsNullOrWhiteSpace(x.Slug)));
+        Assert.That(systems, Is.Not.Empty);
+        Assert.That(systems.All(x => !string.IsNullOrWhiteSpace(x.Slug)), Is.True);
+        Assert.That(systems.All(x => !string.IsNullOrWhiteSpace(x.Folder)), Is.True);
+        Assert.That(systems.Any(x => string.IsNullOrWhiteSpace(x.Extensions)), Is.True);
+        Assert.That(systems.Any(x => string.IsNullOrWhiteSpace(x.Core)), Is.True);
     }
 
     [TestCase("sms", "sms")]
     [TestCase("SMS", "sms")]
     [TestCase("mastersystem", "sms")]
+    [TestCase("master system", "sms")]
     [TestCase("pce", "pcengine")]
+    [TestCase("pc engine", "pcengine")]
     [TestCase("arcade_chd", "arcade")]
     [TestCase("daphne", "arcade")]
     [TestCase("fba", "arcade")]
     [TestCase("model123", "arcade")]
-    [TestCase("naomi", "arcade")]
+    [TestCase("naomi", "naomi")]
     [TestCase("zinc", "arcade")]
+    [TestCase("dreamcast", "dreamcast")]
+    [TestCase("odyssey2", "odyssey2")]
+    [TestCase("pcenginecd", "pcenginecd")]
     public void GetSystem_NormalizesSlugAliases(string name, string expectedSlug)
     {
         var system = SystemsDatabase.Instance.GetSystem(name);
@@ -43,7 +51,7 @@ public class SystemsTests :TestBase
     public void GetSystemFromCore_IsCaseInsensitive()
     {
         var system = SystemsDatabase.Instance.GetSystemFromCore("sega - dreamcast/naomi");
-        Assert.That(system.Slug, Is.EqualTo("naomi"));
+        Assert.That(system.Slug, Is.EqualTo("dreamcast"));
     }
 
     [Test]

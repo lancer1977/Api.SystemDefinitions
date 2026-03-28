@@ -132,7 +132,14 @@ public class SystemsDatabase
         return normalized switch
         {
             "mastersystem" => "sms",
+            "master system" => "sms",
+            "pc engine" => "pcengine",
             "pce" => "pcengine",
+            "arcade_chd" => "arcade",
+            "daphne" => "arcade",
+            "fba" => "arcade",
+            "model123" => "arcade",
+            "zinc" => "arcade",
             _ => normalized
         };
     }
