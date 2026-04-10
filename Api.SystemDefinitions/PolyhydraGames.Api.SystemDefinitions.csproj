@@ -10,9 +10,9 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.5" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.5" />
     <PackageReference Include="PolyhydraGames.Core.Interfaces.Gaming" Version="1.0.0.13" />
-    <PackageReference Include="PolyhydraGames.Core.Models" Version="1.0.1.14" />
-    <PackageReference Include="PolyhydraGames.Extensions" Version="2.1.1.73" />
-    <PackageReference Include="Spectre.Console" Version="0.54.0" />
+    <PackageReference Include="PolyhydraGames.Core.Models" Version="1.0.1.15" />
+    <PackageReference Include="PolyhydraGames.Extensions" Version="2.1.1.75" />
+    <PackageReference Include="Spectre.Console" Version="0.55.0" />
   </ItemGroup>
 
 </Project>
