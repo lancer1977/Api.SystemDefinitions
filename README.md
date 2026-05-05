@@ -1,3 +1,42 @@
-# Api.SystemDefinitions
+# PolyhydraGames.Api.SystemDefinitions
 
-This is a wrapper around a dataset we gathered from Internet Game Database to integrate it into the applications. There is also some blending with Batocera in regard to the slugs and such.
+Typed system definition helpers for game platform slugs, folders, emulator
+cores, file extensions, and IGDB identifiers.
+
+The library wraps a curated platform dataset and normalizes common aliases such
+as `mastersystem` -> `sms`, `pce` -> `pcengine`, and arcade variants -> `arcade`.
+
+## Usage
+
+```csharp
+await SystemsDatabase.Setup(logger, dataSource: "path/to/platform.fixture.json");
+
+var system = SystemsDatabase.Instance.GetSystem("SMS");
+var folder = "mastersystem".ToFolder();
+var core = "SMS".GetCoreFromSlug();
+var slug = SystemsDatabase.Instance.GetSystemFromExtension(".gba");
+```
+
+## Tests
+
+Default tests use a local fixture and should not require network access.
+
+```bash
+dotnet test Api.SystemDefinitions.sln --no-restore
+```
+
+## Build And Pack
+
+```bash
+dotnet build Api.SystemDefinitions.sln --no-restore
+dotnet pack Api.SystemDefinitions/PolyhydraGames.Api.SystemDefinitions.csproj --configuration Release --no-restore
+```
+
+## Roadmap
+
+- [v1 roadmap](docs/roadmap/v1/README.md)
+- [Release checklist](docs/release-checklist.md)
+
+## License
+
+This project is licensed under the MIT License.

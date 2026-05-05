@@ -1,15 +1,15 @@
 # Api.SystemDefinitions
 
-API integration for Polyhydra Games.
+Typed system definition helpers for Polyhydra Games applications.
 
 ## Contents
 
-- [Index](docs/)
+- [Release Checklist](release-checklist.md)
 
 ## Roadmap
 
-- [v1](docs/roadmap/v1/README.md)
+- [v1](roadmap/v1/README.md)
 
 ## Decisions
 
-- [Template](docs/decisions/0000-template.md)
+- [Template](decisions/0000-template.md)
