@@ -25,4 +25,4 @@
 
 - [ ] Add a release workflow for NuGet publishing.
 - [ ] Add generated API reference documentation.
-- [ ] Add a fixture update script for refreshing the platform dataset.
+- [x] Add a fixture update script for refreshing the platform dataset.

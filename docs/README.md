@@ -4,6 +4,7 @@ Typed system definition helpers for Polyhydra Games applications.
 
 ## Contents
 
+- [Platform Fixture Refresh](fixture-refresh.md)
 - [Release Checklist](release-checklist.md)
 
 ## Roadmap

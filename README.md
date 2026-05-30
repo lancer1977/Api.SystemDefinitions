@@ -21,6 +21,8 @@ var slug = SystemsDatabase.Instance.GetSystemFromExtension(".gba");
 
 Default tests use a local fixture and should not require network access.
 
+Use `python scripts/refresh-platform-fixture.py` to regenerate `API.SystemDefinitions.Test/TestData/platform.fixture.json` from the upstream dataset when the fixture needs a maintenance refresh.
+
 ```bash
 dotnet test Api.SystemDefinitions.sln --no-restore
 ```
@@ -35,6 +37,7 @@ dotnet pack Api.SystemDefinitions/PolyhydraGames.Api.SystemDefinitions.csproj --
 ## Roadmap
 
 - [v1 roadmap](docs/roadmap/v1/README.md)
+- [Platform fixture refresh guide](docs/fixture-refresh.md)
 - [Release checklist](docs/release-checklist.md)
 
 ## License
