@@ -6,6 +6,15 @@ cores, file extensions, and IGDB identifiers.
 The library wraps a curated platform dataset and normalizes common aliases such
 as `mastersystem` -> `sms`, `pce` -> `pcengine`, and arcade variants -> `arcade`.
 
+## Tags
+
+- api
+- dotnet
+- api-system-definitions
+- system
+- definitions
+- streaming
+
 ## Usage
 
 ```csharp
