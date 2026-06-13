@@ -49,6 +49,12 @@ dotnet pack Api.SystemDefinitions/PolyhydraGames.Api.SystemDefinitions.csproj --
 - [Platform fixture refresh guide](docs/fixture-refresh.md)
 - [Release checklist](docs/release-checklist.md)
 
+## Docs
+
+- [Docs Index](./docs/README.md)
+- [Feature Index](./docs/features/README.md)
+- [Roadmap Index](./docs/roadmaps/README.md)
+
 ## License
 
 This project is licensed under the MIT License.
