@@ -1,12 +1,17 @@
-name: change-me
-repo_root: change-me
+name: Api.SystemDefinitions
+repo_root: .
 
-languages: []
-frameworks: []
+languages:
+  - csharp
+frameworks:
+  - dotnet
 
 ci:
-  build: []
-  test: []
+  build:
+    - dotnet build Api.SystemDefinitions.sln --no-restore
+    - dotnet pack Api.SystemDefinitions/PolyhydraGames.Api.SystemDefinitions.csproj --configuration Release --no-restore
+  test:
+    - dotnet test Api.SystemDefinitions.sln --no-restore
 
 devstudio:
   runtime_model: three-agent

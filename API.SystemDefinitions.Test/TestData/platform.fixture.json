@@ -62,5 +62,45 @@
     "Slug": "pcenginecd",
     "Extensions": "cue",
     "Core": "NEC - PC Engine CD"
+  },
+  {
+    "IgdbId": "18",
+    "Name": "Nintendo Entertainment System",
+    "Folder": "nes",
+    "Slug": "nes",
+    "Extensions": "nes,fds",
+    "Core": "Nintendo - Nintendo Entertainment System"
+  },
+  {
+    "IgdbId": "19",
+    "Name": "Super Nintendo Entertainment System",
+    "Folder": "snes",
+    "Slug": "snes",
+    "Extensions": "sfc,smc,fig",
+    "Core": "Nintendo - Super Nintendo Entertainment System"
+  },
+  {
+    "IgdbId": "29",
+    "Name": "Sega Mega Drive/Genesis",
+    "Folder": "genesis",
+    "Slug": "genesis",
+    "Extensions": "md,gen,smd",
+    "Core": "Sega - Mega Drive - Genesis"
+  },
+  {
+    "IgdbId": "4",
+    "Name": "Nintendo 64",
+    "Folder": "n64",
+    "Slug": "n64",
+    "Extensions": "n64,z64,v64",
+    "Core": "Nintendo - Nintendo 64"
+  },
+  {
+    "IgdbId": "7",
+    "Name": "Sony PlayStation",
+    "Folder": "psx",
+    "Slug": "psx",
+    "Extensions": "cue,chd,iso,pbp",
+    "Core": "Sony - PlayStation"
   }
 ]

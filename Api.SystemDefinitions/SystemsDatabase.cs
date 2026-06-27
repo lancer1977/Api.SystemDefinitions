@@ -97,6 +97,22 @@ namespace PolyhydraGames.Api.SystemDefinitions
             return string.IsNullOrEmpty(result) ? UnknownSystemSlug : result;
         }
 
+        public string GetSystemFromPath(string path)
+        {
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                return UnknownSystemSlug;
+            }
+
+            var pathSlug = GetSystemFromPathSegments(path);
+            if (!string.IsNullOrEmpty(pathSlug))
+            {
+                return pathSlug;
+            }
+
+            return GetSystemFromExtension(Path.GetExtension(path));
+        }
+
         public string GetIgdbIdFromSlug(string slug)
         {
             return GetSystem(slug).IgdbId;
@@ -155,6 +171,18 @@ namespace PolyhydraGames.Api.SystemDefinitions
                 "master system" => "sms",
                 "pc engine" => "pcengine",
                 "pce" => "pcengine",
+                "megadrive" => "genesis",
+                "mega drive" => "genesis",
+                "md" => "genesis",
+                "sfc" => "snes",
+                "super famicom" => "snes",
+                "supernintendo" => "snes",
+                "super nintendo" => "snes",
+                "nintendo64" => "n64",
+                "nintendo 64" => "n64",
+                "ps1" => "psx",
+                "playstation" => "psx",
+                "playstation 1" => "psx",
                 "arcade_chd" => "arcade",
                 "daphne" => "arcade",
                 "fba" => "arcade",
@@ -181,8 +209,34 @@ namespace PolyhydraGames.Api.SystemDefinitions
             var normalizedExtension = NormalizeExtension(ext);
             return string.IsNullOrEmpty(normalizedExtension)
                 ? null
-                : Systems.FirstOrDefault(x =>
-                    string.Equals(x.Extensions, normalizedExtension, StringComparison.OrdinalIgnoreCase));
+                : Systems.FirstOrDefault(x => GetExtensions(x)
+                    .Any(extension => string.Equals(extension, normalizedExtension, StringComparison.OrdinalIgnoreCase)));
+        }
+
+        private string GetSystemFromPathSegments(string path)
+        {
+            var segments = path
+                .Split(['/', '\\'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+                .Reverse()
+                .Skip(1);
+
+            foreach (var segment in segments)
+            {
+                var normalized = NormalizeSlug(segment);
+                if (FindBySlug(normalized) is { } system)
+                {
+                    return system.Slug;
+                }
+            }
+
+            return string.Empty;
+        }
+
+        private static IEnumerable<string> GetExtensions(SystemDefinition system)
+        {
+            return system.Extensions
+                .Split([',', ';', '|', ' '], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+                .Select(NormalizeExtension);
         }
 
         private static string NormalizeExtension(string ext)

@@ -24,6 +24,7 @@ var system = SystemsDatabase.Instance.GetSystem("SMS");
 var folder = "mastersystem".ToFolder();
 var core = "SMS".GetCoreFromSlug();
 var slug = SystemsDatabase.Instance.GetSystemFromExtension(".gba");
+var inventorySlug = SystemsDatabase.Instance.GetSystemFromPath("/roms/snes/Chrono Trigger.sfc");
 ```
 
 ## Tests

@@ -12,6 +12,11 @@ namespace PolyhydraGames.Api.SystemDefinitions
             return SystemsDatabase.Instance.GetSystemFromExtension(ext);
         }
 
+        public static string GetSystemFromPath(string path)
+        {
+            return SystemsDatabase.Instance.GetSystemFromPath(path);
+        }
+
         public static string GetIgdbIdFromSlug(string slug)
         {
             return GetSystem(slug).IgdbId;

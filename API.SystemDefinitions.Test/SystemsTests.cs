@@ -33,6 +33,16 @@ public class SystemsTests :TestBase
     [TestCase("dreamcast", "dreamcast")]
     [TestCase("odyssey2", "odyssey2")]
     [TestCase("pcenginecd", "pcenginecd")]
+    [TestCase("megadrive", "genesis")]
+    [TestCase("mega drive", "genesis")]
+    [TestCase("md", "genesis")]
+    [TestCase("sfc", "snes")]
+    [TestCase("super famicom", "snes")]
+    [TestCase("super nintendo", "snes")]
+    [TestCase("nintendo64", "n64")]
+    [TestCase("nintendo 64", "n64")]
+    [TestCase("ps1", "psx")]
+    [TestCase("playstation", "psx")]
     [TestCase("  SMS  ", "sms")]
     public void GetSystem_NormalizesSlugAliases(string name, string expectedSlug)
     {
@@ -63,11 +73,29 @@ public class SystemsTests :TestBase
 
     [TestCase("gba", "gba")]
     [TestCase(" .GBA ", "gba")]
+    [TestCase("smc", "snes")]
+    [TestCase(".SFC", "snes")]
+    [TestCase("md", "genesis")]
+    [TestCase(".GEN", "genesis")]
+    [TestCase("nes", "nes")]
+    [TestCase("z64", "n64")]
+    [TestCase(".pbp", "psx")]
     [TestCase("", SystemsDatabase.UnknownSystemSlug)]
     [TestCase("   ", SystemsDatabase.UnknownSystemSlug)]
     public void GetSystemFromExtension_NormalizesCommonInputShapes(string extension, string expectedSlug)
     {
         var systemSlug = SystemsDatabase.Instance.GetSystemFromExtension(extension);
+        Assert.That(systemSlug, Is.EqualTo(expectedSlug));
+    }
+
+    [TestCase("/roms/snes/Chrono Trigger (USA).sfc", "snes")]
+    [TestCase(@"D:\roms\genesis\Sonic The Hedgehog 2.md", "genesis")]
+    [TestCase("/roms/psx/Castlevania - Symphony of the Night.cue", "psx")]
+    [TestCase("/roms/pcenginecd/Dracula X.cue", "pcenginecd")]
+    [TestCase("/roms/unknown/readme.txt", SystemsDatabase.UnknownSystemSlug)]
+    public void GetSystemFromPath_MapsInventoryPathsToCanonicalSlugs(string path, string expectedSlug)
+    {
+        var systemSlug = SystemsDatabase.Instance.GetSystemFromPath(path);
         Assert.That(systemSlug, Is.EqualTo(expectedSlug));
     }
 
@@ -98,7 +126,12 @@ public class SystemsTests :TestBase
             "naomi",
             "dreamcast",
             "odyssey2",
-            "pcenginecd"
+            "pcenginecd",
+            "nes",
+            "snes",
+            "genesis",
+            "n64",
+            "psx"
         }));
     }
 
@@ -108,5 +141,6 @@ public class SystemsTests :TestBase
         Assert.That(SystemHelpers.GetSystem("SMS").Slug, Is.EqualTo("sms"));
         Assert.That("mastersystem".GetCoreFromSlug(), Is.EqualTo(SystemsDatabase.Instance.GetCoreFromSlug("mastersystem")));
         Assert.That("SMS".ToFolder(), Is.EqualTo("sms"));
+        Assert.That(SystemHelpers.GetSystemFromPath("/roms/snes/Chrono Trigger.smc"), Is.EqualTo("snes"));
     }
 }
