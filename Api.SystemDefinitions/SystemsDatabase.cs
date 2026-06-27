@@ -118,6 +118,16 @@ namespace PolyhydraGames.Api.SystemDefinitions
             return GetSystem(slug).IgdbId;
         }
 
+        public string GetProviderIdFromSlug(string slug, string provider)
+        {
+            var system = GetSystem(slug);
+            return NormalizeValue(provider).ToLowerInvariant() switch
+            {
+                "igdb" => system.IgdbId,
+                _ => string.Empty
+            };
+        }
+
         public string GetCoreFromSlug(string slug)
         {
             return GetSystem(slug).Core;

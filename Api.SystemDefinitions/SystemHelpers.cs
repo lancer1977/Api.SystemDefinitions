@@ -22,6 +22,11 @@ namespace PolyhydraGames.Api.SystemDefinitions
             return GetSystem(slug).IgdbId;
         }
 
+        public static string GetProviderIdFromSlug(string slug, string provider)
+        {
+            return SystemsDatabase.Instance.GetProviderIdFromSlug(slug, provider);
+        }
+
         public static string GetCoreFromSlug(this string slug)
         {
             return GetSystem(slug).Core;

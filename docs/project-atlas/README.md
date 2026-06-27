@@ -2,7 +2,7 @@
 
 ## Purpose
 
-`Api.SystemDefinitions` provides deterministic platform definitions for retro game inventory and catalog lookup work. It maps aliases, folders, emulator cores, file extensions, IGDB identifiers, and ROM paths to canonical system slugs.
+`Api.SystemDefinitions` provides deterministic platform definitions for retro game inventory and catalog lookup work. It maps aliases, folders, emulator cores, file extensions, provider identifiers, and ROM paths to canonical system slugs.
 
 ## Primary Surfaces
 
@@ -11,6 +11,10 @@
 - Fixture-backed tests: `API.SystemDefinitions.Test/SystemsTests.cs`.
 - Curated test fixture: `API.SystemDefinitions.Test/TestData/platform.fixture.json`.
 - Fixture refresh helper: `scripts/refresh-platform-fixture.py`.
+
+## Mapping Contract
+
+Consumers should treat `SystemDefinition.Slug` as the canonical platform key and `SystemDefinition.Folder` as the Batocera/local collection folder key. Provider-specific IDs are resolved through `GetProviderIdFromSlug`; the current curated dataset exposes IGDB IDs and returns an empty string for providers that are not present yet.
 
 ## Validation
 

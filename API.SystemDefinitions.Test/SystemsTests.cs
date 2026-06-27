@@ -99,6 +99,15 @@ public class SystemsTests :TestBase
         Assert.That(systemSlug, Is.EqualTo(expectedSlug));
     }
 
+    [TestCase("snes", "igdb", "19")]
+    [TestCase("super nintendo", "IGDB", "19")]
+    [TestCase("genesis", "thegamesdb", "")]
+    public void GetProviderIdFromSlug_ReturnsKnownProviderIdsDeterministically(string slug, string provider, string expectedId)
+    {
+        var providerId = SystemsDatabase.Instance.GetProviderIdFromSlug(slug, provider);
+        Assert.That(providerId, Is.EqualTo(expectedId));
+    }
+
     [Test]
     public void GetSystem_ThrowsUsefulErrorForUnknownSlug()
     {
@@ -142,5 +151,6 @@ public class SystemsTests :TestBase
         Assert.That("mastersystem".GetCoreFromSlug(), Is.EqualTo(SystemsDatabase.Instance.GetCoreFromSlug("mastersystem")));
         Assert.That("SMS".ToFolder(), Is.EqualTo("sms"));
         Assert.That(SystemHelpers.GetSystemFromPath("/roms/snes/Chrono Trigger.smc"), Is.EqualTo("snes"));
+        Assert.That(SystemHelpers.GetProviderIdFromSlug("snes", "igdb"), Is.EqualTo("19"));
     }
 }

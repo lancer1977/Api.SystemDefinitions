@@ -21,6 +21,7 @@
 - Alias coverage now includes common local-library forms for Master System, PC Engine, Genesis/Mega Drive, SNES/Super Famicom, Nintendo 64, PlayStation, and arcade aliases.
 - Extension coverage supports multi-extension fixture entries such as `sfc,smc,fig` and `md,gen,smd`.
 - Inventory path lookup now prefers canonical folder/path segments before extension fallback, which makes ambiguous formats like `.cue` deterministic.
+- Provider ID lookup is explicit through `GetProviderIdFromSlug`; the current fixture-backed provider ID is IGDB, and unknown providers return an empty string deterministically.
 
 ### Dependency health — clean
 - `Spectre.Console` was patched to `0.57.1`.
