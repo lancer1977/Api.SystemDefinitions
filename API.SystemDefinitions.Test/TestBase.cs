@@ -1,4 +1,3 @@
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using NUnit.Framework;
 using PolyhydraGames.Api.SystemDefinitions;
@@ -10,14 +9,7 @@ public abstract class TestBase
     [SetUp]
     public async Task Setup()
     {
-        var logger =  NullLogger.Instance;
-        try
-        {
-            await SystemsDatabase.Setup(logger, new HttpClient());
-        }
-        catch
-        {
-            // SystemsDatabase may not be available in test context
-        }
+        var fixturePath = Path.Combine(AppContext.BaseDirectory, "TestData", "platform.fixture.json");
+        await SystemsDatabase.Setup(NullLogger.Instance, dataSource: fixturePath);
     }
 }

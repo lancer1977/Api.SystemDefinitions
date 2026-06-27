@@ -38,5 +38,29 @@
     "Slug": "naomi",
     "Extensions": "chd",
     "Core": "Sega - Dreamcast/Naomi"
+  },
+  {
+    "IgdbId": "23",
+    "Name": "Dreamcast",
+    "Folder": "dreamcast",
+    "Slug": "dreamcast",
+    "Extensions": "cdi",
+    "Core": "Sega - Dreamcast"
+  },
+  {
+    "IgdbId": "88",
+    "Name": "Magnavox Odyssey 2",
+    "Folder": "odyssey2",
+    "Slug": "odyssey2",
+    "Extensions": "bin",
+    "Core": "Magnavox - Odyssey2"
+  },
+  {
+    "IgdbId": "150",
+    "Name": "PC Engine CD",
+    "Folder": "pcenginecd",
+    "Slug": "pcenginecd",
+    "Extensions": "cue",
+    "Core": "NEC - PC Engine CD"
   }
 ]
