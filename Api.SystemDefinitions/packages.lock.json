@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net10.0": {
+      "Microsoft.Extensions.Configuration.Abstractions": {
+        "type": "Direct",
+        "requested": "[10.0.9, )",
+        "resolved": "10.0.9",
+        "contentHash": "qGhRPd3VxfLV9UqatVOiD9mAeUbj2KiMwGFYC5uXlzExiZQoe4X/hdmzGIU7BQjNLTqCnnbTHVyBglG3668/HA==",
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "10.0.9"
+        }
+      },
+      "Microsoft.Extensions.Logging.Abstractions": {
+        "type": "Direct",
+        "requested": "[10.0.9, )",
+        "resolved": "10.0.9",
+        "contentHash": "9S/DFt4cohlMPpzIxjG6kk0L8MuN2vDm9pbMCulxtJzzk82oJHVLBd8vuQxaPskaYQwKqmFmbannf5eoChgjYg==",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.9"
+        }
+      },
+      "PolyhydraGames.Core.Interfaces.Gaming": {
+        "type": "Direct",
+        "requested": "[1.0.0.13, )",
+        "resolved": "1.0.0.13",
+        "contentHash": "ng1UWyLW1x2YWU0z0HQZjMrdUKuc2/3Iuvyo6qeV3R1R0oo6fHHgaq/lnKmytkuTGX01OuTZsG5S71uuGVdmCw=="
+      },
+      "PolyhydraGames.Core.Models": {
+        "type": "Direct",
+        "requested": "[1.0.2.18, )",
+        "resolved": "1.0.2.18",
+        "contentHash": "s5BYcCVlyA1IsTl83UfFOZWOf2LOmsdyk7GaS4PAM2p/5AcTBfICvQw8tHs2XrKyJ+iCpXE0SXOf9vPexW/bnA==",
+        "dependencies": {
+          "PolyhydraGames.Core.Interfaces": "2.0.0.45",
+          "PolyhydraGames.Extensions": "2.1.1.78",
+          "System.Reactive": "6.1.0"
+        }
+      },
+      "PolyhydraGames.Extensions": {
+        "type": "Direct",
+        "requested": "[2.1.1.79, )",
+        "resolved": "2.1.1.79",
+        "contentHash": "vkWi/7BGGmvtw4yQpauIRR0PIkuG/OCV46qyLoPeFBU4YxJAg92eoMKEBc2Fdc9kFbqhB1MoQP40AfyvqIUmZQ==",
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "10.0.5",
+          "SpotifyAPI.Web": "7.4.2"
+        }
+      },
+      "Spectre.Console": {
+        "type": "Direct",
+        "requested": "[0.57.1, )",
+        "resolved": "0.57.1",
+        "contentHash": "h/B0CJLR5Ba8yq+iVjjZR9JXMS+8a1syHmHhyZ6w5m8rHDWLGOlaKAhzJanHJL62rZxynLeVOx+43MKvskJ1lA==",
+        "dependencies": {
+          "Spectre.Console.Ansi": "0.57.1"
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions": {
+        "type": "Transitive",
+        "resolved": "10.0.9",
+        "contentHash": "g41l/30G3K4B/d/L8kjux0+30e27c8D0FVQ/PFCpbekgfDpj9mnDhieP67EqXWvl1EWNeZh2rpR4F5B/jcDOHA=="
+      },
+      "Microsoft.Extensions.Primitives": {
+        "type": "Transitive",
+        "resolved": "10.0.9",
+        "contentHash": "fmEbAUFsaIKirgLt/lYhuFRBwhcSJN31jjHgCdbQxJiWOum6EdLjkbgGuukSP9z/a+9LibaxII/kF+GwOXgC4g=="
+      },
+      "Newtonsoft.Json": {
+        "type": "Transitive",
+        "resolved": "13.0.3",
+        "contentHash": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ=="
+      },
+      "PolyhydraGames.Core.Interfaces": {
+        "type": "Transitive",
+        "resolved": "2.0.0.45",
+        "contentHash": "e1sPRxU7V1TWpPdOkHaoPLz/yZCdKHHkUk+znCX2ropyXM/2qzOXNqU/imRwuHqV/ZK6Lky7+3dwTYENYMwLdw=="
+      },
+      "Spectre.Console.Ansi": {
+        "type": "Transitive",
+        "resolved": "0.57.1",
+        "contentHash": "IFlXdGXOGD4XCK5ybZsXgQo7PE0ZE/pt9YFFWo2cECTipS8DrViLFazx+K00/A+fY1PlHYt1Vqwrjfod4EEckw=="
+      },
+      "SpotifyAPI.Web": {
+        "type": "Transitive",
+        "resolved": "7.4.2",
+        "contentHash": "DxyIO+oxI7gyqyGJ5QzVWf31JInRDRhqGtTXIKX6HUJBie+aR+OuB4bFSYWNVO6GL4V+Tm3PQBKNBa+UJzchOA==",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3"
+        }
+      },
+      "System.Reactive": {
+        "type": "Transitive",
+        "resolved": "6.1.0",
+        "contentHash": "M5cCC1ZMkZr9jbSQGTHnVkb5TDN67qWCV7AP8TAHdGkvDlu0puT5NzemESNn9+HkYIDpWpocP68/i+/ame2/2w=="
+      }
+    }
+  }
+}

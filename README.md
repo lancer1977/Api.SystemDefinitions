@@ -35,7 +35,7 @@ Default tests use a local fixture and should not require network access.
 Use `python scripts/refresh-platform-fixture.py` to regenerate `API.SystemDefinitions.Test/TestData/platform.fixture.json` from the upstream dataset when the fixture needs a maintenance refresh.
 
 ```bash
-dotnet test Api.SystemDefinitions.sln --no-restore
+bash scripts/validate.sh
 ```
 
 ## Build And Pack
